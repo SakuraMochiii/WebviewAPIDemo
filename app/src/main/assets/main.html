@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style src="style.css">
+    body {
+        padding: 5px;
+    }
+    .header {
+          border-style:solid;
+	      border-width:1px;
+		  height:250px;
+		  border-radius: 10px;
+		  margin-bottom: 5px;
+		  padding: 0px 5px 20px 5px;
+	    }
+	#hint{
+	    height:250px;
+	    overflow-y: auto;
+	}
+    #listView {
+         width: 100%;
+         border-style:solid;
+	     border-width:1px;
+	     border-radius: 10px;
+	     height:250px;
+	     overflow: auto;
+        }
+    #list {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px;
+    }
+    .listItem {
+        display: block;
+        width: 80%;
+        margin: 0 auto 5px;
+        padding: 5px 10px;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+        border-style:ridge;
+	    border-width:1px;
+	    height:20px;
+	    background-color:#EEEEEE;
+	    border-radius: 5px;
+}
+    </style>
+</head>
+<body>
+<div class="header">
+    <p id="hint"></p>
+</div>
+<div id="listView">
+    <dl id="list">
+        <!-- 列表项将动态添加到这里 -->
+    </dl>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
