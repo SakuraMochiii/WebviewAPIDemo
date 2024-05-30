@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * create by rf.w 19-2-28上午10:24
+ * create by rf.w 19-2-28 10:24 AM
  */
 public class IsoFingerPrintAction extends ActionModel {
     private FingerprintDevice device = null;
@@ -52,7 +52,7 @@ public class IsoFingerPrintAction extends ActionModel {
     public void open(Map<String, Object> param, ActionCallback callback) {
         try {
             device.open(FingerprintDevice.ISO_FINGERPRINT);
-            //清除指纹数据
+            //clear all fingerprint data
             device.delAllFingers();
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
@@ -130,7 +130,7 @@ public class IsoFingerPrintAction extends ActionModel {
                     } else if (operationResult instanceof FingerprintRemoveOperationResult) {
                         callback.sendResponse(mContext.getString(R.string.remove_fingerprint));
                     } else if (operationResult instanceof FingerprintNoneOperationResult) {
-                        callback.sendResponse(Constants.HANDLER_LOG_FAILED, mContext.getString(R.string.scan_fingerprint_fail) + ",retry");//重试
+                        callback.sendResponse(Constants.HANDLER_LOG_FAILED, mContext.getString(R.string.scan_fingerprint_fail) + ",retry");//retry
                     } else if (operationResult instanceof FingerprintTimeoutOperationResult) {
                         callback.sendResponse(Constants.HANDLER_LOG_FAILED, mContext.getString(R.string.enroll_timeout));
                     } else if (operationResult instanceof FingerprintOperationResult) {
