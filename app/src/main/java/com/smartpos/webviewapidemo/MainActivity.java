@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         initUI();
         webView = (WebView) findViewById(R.id.wv_webview);
         WebSettings settings = webView.getSettings();
-        //允许webview对文件的操作
+        //allow webview to access files
         settings.setAllowUniversalAccessFromFileURLs(true);
         settings.setAllowFileAccess(true);
         settings.setAllowFileAccessFromFileURLs(true);
