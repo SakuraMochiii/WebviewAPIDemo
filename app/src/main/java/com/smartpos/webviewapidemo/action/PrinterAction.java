@@ -169,29 +169,29 @@ public class PrinterAction extends ActionModel {
 
 
     /**
-     * 创建二维码
+     * create QR code
      *
      * @param content   content
      * @param widthPix  widthPix
      * @param heightPix heightPix
-     * @return 二维码
+     * @return QR code
      */
     private Bitmap createQRCode(String content, int widthPix, int heightPix) {
         try {
             if (content == null || "".equals(content)) {
                 return null;
             }
-            // 配置参数
+            // add data
             Map<EncodeHintType, Object> hints = new HashMap<>();
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-            // 容错级别
+            // fault tolerance level
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-            // 图像数据转换，使用了矩阵转换
+            // image data conversion using matrix transformation
             BitMatrix bitMatrix = new QRCodeWriter().encode(content, BarcodeFormat.QR_CODE, widthPix,
                     heightPix, hints);
             int[] pixels = new int[widthPix * heightPix];
-            // 下面这里按照二维码的算法，逐个生成二维码的图片，
-            // 两个for循环是图片横列扫描的结果
+            // Use QR code algorithm to generate QR code images one by one
+            // The two for loops are the image horizontal scanning result
             for (int y = 0; y < heightPix; y++) {
                 for (int x = 0; x < widthPix; x++) {
                     if (bitMatrix.get(x, y)) {
@@ -201,10 +201,10 @@ public class PrinterAction extends ActionModel {
                     }
                 }
             }
-            // 生成二维码图片的格式，使用ARGB_8888
+            // Use ARGB_8888 as the QR code format when generating
             Bitmap bitmap = Bitmap.createBitmap(widthPix, heightPix, Bitmap.Config.ARGB_8888);
             bitmap.setPixels(pixels, 0, widthPix, 0, 0, widthPix, heightPix);
-            //必须使用compress方法将bitmap保存到文件中再进行读取。直接返回的bitmap是没有任何压缩的，内存消耗巨大！
+            // need to use compress method to store bitmap into file and then read. If you directly use bitmap memory usage is very high
             return bitmap;
         } catch (WriterException e) {
             e.printStackTrace();
@@ -268,19 +268,20 @@ public class PrinterAction extends ActionModel {
     }
 
     public static Bitmap setBitmapSize(Context mContext, String id, int w, int h) {
-        BitmapFactory.Options opts = new BitmapFactory.Options();//获取自定义参数对象
-        opts.inJustDecodeBounds = true;//设置只是解密（减少占用图片内存）只是修改图片属性
-        //修复图片参数（给的是图片地址，修改图片参数先要调用可以修改参数的方法decodeResource（）第三参数就是修改参数的对象）
-        //执行 BitmapFactory.decodeResource（）方法 设置的opts属性才生效
+        BitmapFactory.Options opts = new BitmapFactory.Options();//Get custom parameter object
+        opts.inJustDecodeBounds = true;//Settings are only to decrypt (reduce the image memory occupied), only modifys image attributes
+        //Repair the image parameters (the image address is given. To modify the image parameters, you must first call the method decodeResource().
+        //The third parameter is the object to modify the parameters.)
+        //Implement BitmapFactory.decodeResource() method so the opts attribute in settings takes effect.
         try {
             BitmapFactory.decodeStream(mContext.getResources().getAssets()
                     .open(id), null, opts);
-            //先获取加载图片的宽高
+            //First get the width and height of the loaded image
             int outWidth = opts.outWidth;
             int outHeight = opts.outHeight;
-            //设置缩放图片的系数(int类型)
+            //Set the coefficient of the image scale (int)
             opts.inSampleSize = getSampleSize(outWidth, outHeight, w, h);
-            //注意前面设置只获取图片信息，这里要设置回获取图片
+            //Note that the previous setting only obtains picture information. Here you need to set it back to obtain pictures.
             opts.inJustDecodeBounds = false;
             return BitmapFactory.decodeStream(mContext.getResources().getAssets()
                     .open(id), null, opts);
@@ -290,7 +291,7 @@ public class PrinterAction extends ActionModel {
         return null;
     }
 
-    //计算图片实际宽高 是 传入宽高值的 最小整数倍数
+    //Calculate the actual width and height of the picture as the smallest integer multiple of the passed width and height value
     private static int getSampleSize(int outWidth, int outHeight, int w, int h) {
         int sizer = 1;
         if (outWidth > w && outHeight > h) {
