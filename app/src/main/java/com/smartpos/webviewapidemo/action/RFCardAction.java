@@ -37,7 +37,6 @@ public class RFCardAction extends ActionModel {
     private static final int MIFARE_ULTRALIGHT_CARD = 4;
 
     Card rfCard;
-    /*zh:需要根据实际情况调整索引.
      *en:The index needs to be adjusted according to the actual situation.
      * */
     // mifare card : 2-63,012;
