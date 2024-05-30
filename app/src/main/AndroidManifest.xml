@@ -3,9 +3,9 @@
     package="com.smartpos.webviewapidemo">
 
     <queries>
-        <!--如果想要与其他的应用进行AIDL通信的话，需要在这里注册包名的信息-->
-        <!--谷歌的文档说明 https://developer.android.google.cn/guide/topics/manifest/queries-element?hl=en-->
-        <!--Android 11 解决跨应用绑定Service失败 https://blog.csdn.net/qq_30998053/article/details/123526627-->
+        <!--If you want to communicate with other applications in AIDL, you need to register the package name information here.-->
+        <!--Google's documentation https://developer.android.google.cn/guide/topics/manifest/queries-element?hl=en-->
+        <!--Android 11 solves the problem of cross-application binding Service failure https://blog.csdn.net/qq_30998053/article/details/123526627-->
         <package android:name="com.wizarpos.apiadapter" />
     </queries>
 
