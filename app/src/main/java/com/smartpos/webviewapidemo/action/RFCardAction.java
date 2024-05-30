@@ -37,7 +37,7 @@ public class RFCardAction extends ActionModel {
     private static final int MIFARE_ULTRALIGHT_CARD = 4;
 
     Card rfCard;
-     *en:The index needs to be adjusted according to the actual situation.
+     /*en:The index needs to be adjusted according to the actual situation.
      * */
     // mifare card : 2-63,012;
     //ultralight card : 0,4-63
